@@ -4,8 +4,12 @@ import useAuth from '../../hooks/useAuth';
 import axios from '../../api/axios';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 
+import useInput from '../../hooks/useInput';
+import useToggle from '../../hooks/useToggle';
+
+
 const Login = () => {
-	const { setAuth, persist, setPersist } = useAuth();
+	const { setAuth } = useAuth(); //persist, setPersist
 	const navigate = useNavigate();
 	const location = useLocation();
 	//set the path to turn back after login
@@ -16,9 +20,10 @@ const Login = () => {
 	const errRef = useRef();
 
 	//states
-	const [user, setUser] = useState('')//useState('');
+	const [user, resetUser, userAttr] = useInput('user','')//useLocalStorage('user','');//useState('');
 	const [pwd, setPwd] = useState('');
 	const [errMsg, setErrMsg] = useState('');
+	const [check, toggleCheck] = useToggle('persist', false);
 
 	//Effects
 	useEffect(() => {
@@ -38,14 +43,15 @@ const Login = () => {
 				'/login',
 				JSON.stringify({ username: user, password: pwd }) //send data
 			);
-			//console.log(JSON.stringify(response?.data));
+
 			//get response accessToken
 			const accessToken = response?.data?.accessToken;
 			//set auth state
 			setAuth({ user, accessToken });
 
 			//cleaning the states
-			setUser('');
+			//setUser('');
+			resetUser();
 			setPwd('');
 
 			//this is for turn back to the previous page after login
@@ -59,17 +65,6 @@ const Login = () => {
 			errRef.current.focus();
 		}
 	};
-
-	//Persistency
-	//set the persist state
-	const togglePersist = () => {
-		setPersist(prev => !prev);
-	}
-
-	//set the persist value to local storage
-	useEffect(() => {
-		localStorage.setItem('persist', persist)
-	},[persist]);
 
 	return (
 		<section>
@@ -89,8 +84,7 @@ const Login = () => {
 					ref={userRef}
 					autoComplete='off'
 					required
-					value={user}
-					onChange = {(e)=> setUser(e.target.value)}
+					{ ...userAttr }
 				/>
 
 				<label htmlFor='password'>Password: </label>
@@ -107,8 +101,8 @@ const Login = () => {
 				<div className="persistCheck">
 					<input type="checkbox" 
 						id="persist"
-						checked={persist}
-						onChange={togglePersist}
+						checked={ check }
+						onChange={ toggleCheck }
 					/>
 					<label htmlFor="persist">Trust this divice</label>
 				</div>

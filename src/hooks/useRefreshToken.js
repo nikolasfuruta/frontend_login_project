@@ -13,8 +13,6 @@ const useRefreshToken = () => {
     //set the return response from backend to the auth state
     //we use 'prev' because the user could already have the accessToken, so we want to override it
     setAuth(prev => {
-      console.log(JSON.stringify(prev)); //look at previous data
-      console.log(response.data.accessToken);//look at response data
       //now modify the auth state 
       return {
         user: response.data.user,

@@ -1,15 +1,15 @@
-// import useLocalStorage from './useLocalStorage';
+import useLocalStorage from './useLocalStorage';
 
-// const useToggle = (key, initialValue) => {//'persist', false
-//   const [value, setValue] = useLocalStorage(key, initialValue);
+const useToggle = (key, initialValue) => {//'persist', false
+  const [value, setValue] = useLocalStorage(key, initialValue);
 
-//   const toggle = (value) => {
-//     setValue(prev => {
-//       return typeof value === 'boolean' ? value : !prev
-//     })
-//   }
+  const toggle = (value) => {
+    setValue(prev => {
+      return typeof value === 'boolean' ? value : !prev
+    })
+  }
 
-//   return [value, toggle];
-// }
+  return [value, toggle];
+}
 
-// export default useToggle
+export default useToggle
