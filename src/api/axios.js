@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'https://motionless-bell-bottoms-ox.cyclic.app';
+const BASE_URL = 'backend-login-project.vercel.app';
 
 export default axios.create({
   baseURL: BASE_URL, //connect to backend
