@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/frontend_login_project/static/css/main.b70fa0c2.css",
+    "main.js": "/frontend_login_project/static/js/main.41b467ec.js",
+    "index.html": "/frontend_login_project/index.html",
+    "main.b70fa0c2.css.map": "/frontend_login_project/static/css/main.b70fa0c2.css.map",
+    "main.41b467ec.js.map": "/frontend_login_project/static/js/main.41b467ec.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b70fa0c2.css",
+    "static/js/main.41b467ec.js"
+  ]
+}
